@@ -8,11 +8,16 @@ backend/staticfiles/
 # Node
 frontend/node_modules/
 frontend/dist/
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
 
 # Environment
 backend/.env
 frontend/.env
+.tmp/
 
 # OS / editor
 .DS_Store
 Thumbs.db
+~$*
