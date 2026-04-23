@@ -2,7 +2,7 @@
 
 ## Current Technical Debt Items
 
-| ID | Debt Item | Reason It Matters | Priority |
+| ID | Debt Item | Reason Why It Matters | Priority |
 |---|---|---|---|
 | TD-01 | Theme styling is distributed across multiple components instead of a more centralized design system | Makes long-term UI maintenance slower and increases styling inconsistency risk | High |
 | TD-02 | Avatar uploads use local media storage rather than durable cloud storage | Production uploads may not persist reliably on the current hosting approach | High |
