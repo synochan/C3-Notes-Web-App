@@ -21,7 +21,6 @@ export function AuthPanel({ isSubmitting, onLogin, onRegister, theme }: AuthPane
     username: "",
     email: "",
     display_name: "",
-    avatar_url: "",
     password: "",
   });
 
@@ -157,17 +156,6 @@ export function AuthPanel({ isSubmitting, onLogin, onRegister, theme }: AuthPane
                   value={registerForm.email}
                   onChange={(event) =>
                     setRegisterForm((current) => ({ ...current, email: event.target.value }))
-                  }
-                />
-              </div>
-              <div>
-                <label className="mb-2 block text-sm font-medium text-[var(--theme-text-muted)]">Profile image URL</label>
-                <input
-                  className="theme-input w-full rounded-2xl px-4 py-3 outline-none transition"
-                  placeholder="https://..."
-                  value={registerForm.avatar_url}
-                  onChange={(event) =>
-                    setRegisterForm((current) => ({ ...current, avatar_url: event.target.value }))
                   }
                 />
               </div>

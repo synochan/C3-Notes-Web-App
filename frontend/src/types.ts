@@ -56,7 +56,6 @@ export interface LoginPayload {
 export interface RegisterPayload extends LoginPayload {
   email: string;
   display_name: string;
-  avatar_url: string;
 }
 
 export interface AccountUpdatePayload {
