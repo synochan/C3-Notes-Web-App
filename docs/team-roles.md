@@ -6,10 +6,10 @@ These roles are intended to rotate so each member contributes across planning, t
 
 | Team Member | Current Role | Responsibilities |
 |---|---|---|
-| Member A | PM / Scrum Lead | Tracks sprint progress, coordinates backlog priorities, facilitates weekly check-ins |
-| Member B | QA Lead | Prepares test cases, verifies acceptance criteria, logs and retests defects |
-| Member C | DevOps Lead | Manages environment setup, deployment, CI-related tasks, and release readiness |
-| Member D | Docs Lead | Maintains backlog, sprint documents, risk register, release notes, and support documentation |
+| Dagcuta | PM / Scrum Lead | Tracks sprint progress, coordinates backlog priorities, facilitates weekly check-ins |
+| Gadrinab | QA Lead | Prepares test cases, verifies acceptance criteria, logs and retests defects |
+| Dagcuta | DevOps Lead | Manages environment setup, deployment, CI-related tasks, and release readiness |
+| Opiso | Docs Lead | Maintains backlog, sprint documents, risk register, release notes, and support documentation |
 
 ## Rotation Guidance
 

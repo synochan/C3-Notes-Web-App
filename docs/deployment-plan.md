@@ -28,7 +28,7 @@ Reason:
 
 1. Push the latest frontend-ready code to GitHub.
 2. Import the `frontend` directory into Vercel.
-3. Set `VITE_API_BASE_URL` to the Render backend URL plus `/api`.
+3. Set `VITE_API_BASE_URL` to the Render backend URL plus `/api`
 4. Deploy the frontend.
 5. Verify sign-in, notes list, and note create/edit/delete flows from the live URL.
 
