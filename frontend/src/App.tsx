@@ -47,6 +47,7 @@ function App() {
   const [activeSection, setActiveSection] = useState<"notes" | "archived" | "settings">("notes");
   const [themeId, setThemeId] = useState<string>(() => localStorage.getItem(THEME_STORAGE_KEY) ?? defaultThemeId);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isAvatarBroken, setIsAvatarBroken] = useState(false);
 
   const currentTheme = useMemo(() => getThemeById(themeId), [themeId]);
   const themeStyle = useMemo(
@@ -80,6 +81,10 @@ function App() {
 
     void loadNotes(token, showArchived, search);
   }, [search, showArchived, token, user]);
+
+  useEffect(() => {
+    setIsAvatarBroken(false);
+  }, [user?.avatar_url]);
 
   useEffect(() => {
     setShowArchived(activeSection === "archived");
@@ -490,7 +495,7 @@ function App() {
 
         <div className="grid gap-3 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1fr)]">
           <aside
-            className={`theme-panel fixed inset-y-0 left-0 z-40 w-[min(22rem,88vw)] rounded-r-[1.7rem] p-4 backdrop-blur-xl transition-transform duration-300 lg:sticky lg:top-5 lg:z-auto lg:w-auto lg:translate-x-0 lg:rounded-[1.7rem] lg:p-5 lg:min-h-[calc(100vh-2.5rem)] ${
+            className={`theme-panel fixed inset-y-0 left-0 z-40 w-[min(22rem,88vw)] rounded-r-[1.7rem] p-4 backdrop-blur-xl transition-transform duration-300 lg:relative lg:inset-auto lg:left-auto lg:z-auto lg:w-auto lg:translate-x-0 lg:rounded-[1.7rem] lg:p-5 lg:min-h-0 ${
               isSidebarOpen ? "translate-x-0" : "-translate-x-[105%]"
             }`}
           >
@@ -509,11 +514,12 @@ function App() {
                 C3 Notes
               </p>
               <div className="mt-5 flex items-center gap-4">
-                {user.avatar_url ? (
+                {user.avatar_url && !isAvatarBroken ? (
                   <img
                     src={user.avatar_url}
                     alt={`${displayName} profile`}
                     className="h-14 w-14 rounded-2xl border border-white bg-white object-cover"
+                    onError={() => setIsAvatarBroken(true)}
                   />
                 ) : (
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white bg-white/90 text-lg font-semibold text-[var(--theme-text)]">

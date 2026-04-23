@@ -40,6 +40,7 @@ export function AccountSettingsPanel({
     new_password: "",
   });
   const [avatarPreview, setAvatarPreview] = useState<string>(user.avatar_url);
+  const [isAvatarPreviewBroken, setIsAvatarPreviewBroken] = useState(false);
 
   useEffect(() => {
     setProfileForm({
@@ -51,6 +52,7 @@ export function AccountSettingsPanel({
       clear_avatar: false,
     });
     setAvatarPreview(user.avatar_url);
+    setIsAvatarPreviewBroken(false);
   }, [user]);
 
   const displayInitial = useMemo(
@@ -96,6 +98,7 @@ export function AccountSettingsPanel({
 
     const objectUrl = URL.createObjectURL(file);
     setAvatarPreview(objectUrl);
+    setIsAvatarPreviewBroken(false);
   }
 
   function handleRemoveAvatar() {
@@ -105,6 +108,7 @@ export function AccountSettingsPanel({
       clear_avatar: true,
     }));
     setAvatarPreview("");
+    setIsAvatarPreviewBroken(false);
   }
 
   return (
@@ -136,11 +140,12 @@ export function AccountSettingsPanel({
 
           <div className="theme-card rounded-[1.5rem] bg-white/85 p-4">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              {avatarPreview ? (
+              {avatarPreview && !isAvatarPreviewBroken ? (
                 <img
                   src={avatarPreview}
                   alt="Profile preview"
                   className="h-20 w-20 rounded-[1.4rem] border border-white object-cover shadow-sm"
+                  onError={() => setIsAvatarPreviewBroken(true)}
                 />
               ) : (
                 <div className="flex h-20 w-20 items-center justify-center rounded-[1.4rem] border border-white bg-[var(--theme-hero)] text-xl font-semibold text-[var(--theme-text)] shadow-sm">
