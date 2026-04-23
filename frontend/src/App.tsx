@@ -5,6 +5,7 @@ import { AccountSettingsPanel } from "./components/AccountSettingsPanel";
 import { AuthPanel } from "./components/AuthPanel";
 import { NoteEditor } from "./components/NoteEditor";
 import { NotesList } from "./components/NotesList";
+import { WorkspaceSidebar } from "./components/WorkspaceSidebar";
 import { authApi, notesApi } from "./lib/api";
 import { defaultThemeId, getThemeById, themes } from "./lib/themes";
 import type {
@@ -494,122 +495,20 @@ function App() {
         </div>
 
         <div className="grid gap-3 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1fr)]">
-          <aside
-            className={`theme-panel fixed inset-y-0 left-0 z-40 w-[min(22rem,88vw)] rounded-r-[1.7rem] p-4 backdrop-blur-xl transition-transform duration-300 lg:relative lg:inset-auto lg:left-auto lg:z-auto lg:w-auto lg:translate-x-0 lg:rounded-[1.7rem] lg:p-5 lg:min-h-0 ${
-              isSidebarOpen ? "translate-x-0" : "-translate-x-[105%]"
-            }`}
-          >
-            <div className="mb-4 flex items-center justify-between gap-3">
-              <p className="theme-soft text-xs font-semibold uppercase tracking-[0.3em]">Workspace</p>
-              <button
-                type="button"
-                className="theme-button-secondary rounded-full px-3 py-2 text-sm font-medium transition lg:hidden"
-                onClick={() => setIsSidebarOpen(false)}
-              >
-                Close
-              </button>
-            </div>
-            <div className="theme-hero rounded-[1.5rem] p-4 sm:p-5">
-              <p className="theme-soft text-xs font-semibold uppercase tracking-[0.34em]">
-                C3 Notes
-              </p>
-              <div className="mt-5 flex items-center gap-4">
-                {user.avatar_url && !isAvatarBroken ? (
-                  <img
-                    src={user.avatar_url}
-                    alt={`${displayName} profile`}
-                    className="h-14 w-14 rounded-2xl border border-white bg-white object-cover"
-                    onError={() => setIsAvatarBroken(true)}
-                  />
-                ) : (
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white bg-white/90 text-lg font-semibold text-[var(--theme-text)]">
-                    {displayName.slice(0, 1).toUpperCase()}
-                  </div>
-                )}
-                <div className="min-w-0">
-                  <p className="truncate text-lg font-semibold text-[var(--theme-text)]">{displayName}</p>
-                  <p className="truncate text-sm text-[var(--theme-text-muted)]">@{user.username}</p>
-                </div>
-              </div>
-              <p className="mt-4 text-sm leading-6 text-[var(--theme-text-muted)]">Member since {joinDate}</p>
-            </div>
-
-            <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
-              <p className="theme-soft px-2 text-xs font-semibold uppercase tracking-[0.28em] sm:col-span-2 lg:col-span-1">
-                Workspace
-              </p>
-              <button
-                type="button"
-                className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium transition ${
-                  activeSection === "notes"
-                    ? "theme-button-primary"
-                    : "theme-button-secondary"
-                }`}
-                onClick={() => {
-                  setActiveSection("notes");
-                  setIsSidebarOpen(false);
-                }}
-              >
-                <span>Active notes</span>
-                <span className="rounded-full bg-[var(--theme-card)] px-2 py-1 text-xs text-[var(--theme-text-muted)]">
-                  {user.notes_count}
-                </span>
-              </button>
-              <button
-                type="button"
-                className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium transition ${
-                  activeSection === "archived"
-                    ? "theme-button-primary"
-                    : "theme-button-secondary"
-                }`}
-                onClick={() => {
-                  setActiveSection("archived");
-                  setIsSidebarOpen(false);
-                }}
-              >
-                <span>Archived notes</span>
-                <span className="rounded-full bg-[var(--theme-card)] px-2 py-1 text-xs text-[var(--theme-text-muted)]">
-                  View
-                </span>
-              </button>
-            </div>
-
-            <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
-              <p className="theme-soft px-2 text-xs font-semibold uppercase tracking-[0.28em] sm:col-span-2 lg:col-span-1">
-                Account
-              </p>
-              <button
-                type="button"
-                className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium transition ${
-                  activeSection === "settings"
-                    ? "theme-button-primary"
-                    : "theme-button-secondary"
-                }`}
-                onClick={() => {
-                  setActiveSection("settings");
-                  setIsSidebarOpen(false);
-                }}
-              >
-                <span>Settings</span>
-                <span className="rounded-full bg-[var(--theme-card)] px-2 py-1 text-xs text-[var(--theme-text-muted)]">
-                  Manage
-                </span>
-              </button>
-            </div>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              <div className="theme-card rounded-3xl p-4">
-                <p className="theme-soft text-xs uppercase tracking-[0.28em]">Active notes</p>
-                <p className="mt-3 text-3xl font-semibold text-[var(--theme-text)]">{user.notes_count}</p>
-              </div>
-              <div className="theme-card rounded-3xl p-4">
-                <p className="theme-soft text-xs uppercase tracking-[0.28em]">Pinned</p>
-                <p className="mt-3 text-3xl font-semibold text-[var(--theme-text)]">
-                  {user.pinned_notes_count}
-                </p>
-              </div>
-            </div>
-          </aside>
+          <WorkspaceSidebar
+            activeSection={activeSection}
+            displayName={displayName}
+            isAvatarBroken={isAvatarBroken}
+            isMobileOpen={isSidebarOpen}
+            joinDate={joinDate}
+            onAvatarError={() => setIsAvatarBroken(true)}
+            onCloseMobile={() => setIsSidebarOpen(false)}
+            onSelectSection={setActiveSection}
+            pinnedNotesCount={user.pinned_notes_count}
+            userAvatarUrl={user.avatar_url}
+            username={user.username}
+            userNotesCount={user.notes_count}
+          />
 
           {isSidebarOpen ? (
             <button
