@@ -576,7 +576,7 @@ function App() {
 
             <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
               <p className="theme-soft px-2 text-xs font-semibold uppercase tracking-[0.28em] sm:col-span-2 lg:col-span-1">
-                Accoun
+                Account
               </p>
               <button
                 type="button"
