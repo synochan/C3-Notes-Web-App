@@ -57,17 +57,17 @@ export function NotesList({
   onShowArchivedChange,
 }: NotesListProps) {
   return (
-    <section className="theme-panel flex h-[calc(100vh-12rem)] min-h-[36rem] max-h-[calc(100vh-12rem)] flex-col overflow-hidden rounded-[1.8rem] p-6 backdrop-blur-xl">
-      <div className="mb-5 flex items-end justify-between gap-4">
+    <section className="theme-panel flex h-[70vh] min-h-[30rem] max-h-[70vh] flex-col overflow-hidden rounded-[1.7rem] p-4 backdrop-blur-xl sm:h-[calc(100vh-12rem)] sm:min-h-[36rem] sm:max-h-[calc(100vh-12rem)] sm:p-6">
+      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
         <div>
           <p className="theme-soft text-xs font-semibold uppercase tracking-[0.3em]">
             Your notes
           </p>
-          <h2 className="mt-3 font-sans text-3xl font-semibold tracking-[-0.03em] text-[var(--theme-text)]">
+          <h2 className="mt-3 font-sans text-2xl font-semibold tracking-[-0.03em] text-[var(--theme-text)] sm:text-3xl">
             Everything in one place
           </h2>
         </div>
-        <span className="theme-pill rounded-full px-3 py-1 text-sm font-medium">
+        <span className="theme-pill w-fit rounded-full px-3 py-1 text-sm font-medium">
           {notes.length} {notes.length === 1 ? "note" : "notes"}
         </span>
       </div>
@@ -98,7 +98,7 @@ export function NotesList({
         </div>
       ) : (
         <div className="min-h-0 flex-1 overflow-hidden">
-          <div className="notes-scroll theme-notes-scroll h-full space-y-3 overflow-y-auto pr-2">
+          <div className="notes-scroll theme-notes-scroll h-full space-y-3 overflow-y-auto pr-1 sm:pr-2">
           {notes.map((note) => {
             const isActive = activeNoteId === note.id;
 
@@ -111,7 +111,7 @@ export function NotesList({
                     : "border-[var(--theme-border)] bg-[var(--theme-card)] hover:bg-[var(--theme-card-soft)]"
                 }`}
               >
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <button
                     type="button"
                     className="min-w-0 flex-1 text-left"
@@ -150,7 +150,7 @@ export function NotesList({
                     </div>
                   </button>
 
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-wrap gap-2 sm:flex-col">
                     <button
                       type="button"
                       className="theme-button-secondary rounded-full px-3 py-2 text-sm font-medium transition"

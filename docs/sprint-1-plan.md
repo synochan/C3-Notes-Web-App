@@ -1,42 +1,42 @@
-# Sprint 1 Plan
+# C3 Notes Sprint 1 Plan
 
-Sprint goal: Deliver a stable MVP foundation for the Simple Notes Web App, including core note management, backend persistence, and a clean responsive user interface.
+Sprint duration: `2 weeks`
 
-Sprint duration: 2 weeks
+Sprint goal:
+Deliver a stable MVP foundation for C3 Notes with authentication, core note CRUD, persistence, and a clean responsive workspace.
 
 ## Selected Stories
 
-| Story ID | User Story Summary | Priority | Story Points | Owner |
+| Story ID | Story Summary | Priority | Story Points | Owner |
 |---|---|---|---:|---|
-| US-01 | Create a new note | High | 3 | Frontend Developer |
-| US-02 | Edit an existing note | High | 3 | Full-Stack Developer |
-| US-03 | Delete a note | High | 2 | Full-Stack Developer |
-| US-04 | View all notes in one place | High | 3 | Frontend Developer |
-| US-05 | Persist notes after refresh | High | 5 | Backend Developer |
-| US-06 | Build a clean and responsive interface | High | 5 | UI/UX Developer |
+| US-01 | Register for an account | High | 5 | Member A |
+| US-02 | Sign in and sign out securely | High | 3 | Member C |
+| US-03 | Create a note | High | 3 | Member B |
+| US-04 | Edit an existing note | High | 3 | Member B |
+| US-06 | View all notes in one place | High | 3 | Member D |
+| US-07 | Persist notes after refresh | High | 5 | Member C |
 
-Sprint 1 total: 21 story points
+Sprint 1 total: `22 story points`
 
 ## Sprint Scope Notes
 
-- Sprint 1 is focused on delivering the core MVP only.
-- Search (`US-07`) is not committed for Sprint 1, but can be started as stretch work if the core scope finishes early.
-- Deployment work may begin in parallel but is not the primary delivery goal of Sprint 1.
+- Sprint 1 is intentionally focused on the core experience and technical foundation.
+- Mobile responsiveness is included at a usable MVP level, then refined in later work.
+- Search, archiving, advanced productivity fields, and theming are not part of the committed Sprint 1 scope.
 
 ## Definition of Done
 
-- Code is pushed through a Pull Request workflow.
-- Acceptance criteria for the selected story are met.
-- Manual testing is completed for the implemented feature.
-- UI remains consistent with the project design direction.
-- Documentation is updated when a story affects scope or setup.
+- The story’s acceptance criteria are satisfied.
+- Code is integrated without breaking existing core flows.
+- Basic manual testing is completed for the implemented behavior.
+- Documentation is updated if the story changes scope, setup, or risk.
 
 ## Dependencies
 
-- Backend API endpoints must be available before full frontend integration is finalized.
-- Database setup must be ready before persistence testing can be completed.
-- Basic project structure and environment configuration must be in place before team members work in parallel.
+- Account authentication must be working before private user note flows can be completed.
+- Backend CRUD endpoints must be available before full frontend integration.
+- Database migration and environment configuration must be stable before persistence testing.
 
 ## Change Request Update
 
-Following the Week 3 simulated change request, search functionality remains outside Sprint 1 committed scope. If time allows after the main CRUD milestone is stable, the team may begin technical preparation for `US-07`.
+The Week 3 change request for theme selection is not included in Sprint 1. It is recorded in the backlog as `US-14` and treated as a later enhancement after the MVP is stable.

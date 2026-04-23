@@ -1,24 +1,25 @@
-# Team Roles
+# C3 Notes Team Roles
 
-These roles should rotate regularly so responsibilities are shared and each member gains experience across planning, quality, deployment, and documentation work.
+These roles are intended to rotate so each member contributes across planning, testing, deployment, and documentation.
 
-## Team Members and Current Roles
+## Current Role Allocation
 
-| Team Member | Current Role | Main Responsibilities |
+| Team Member | Current Role | Responsibilities |
 |---|---|---|
-| Member A | PM / Scrum Lead | Organizes sprint planning, tracks progress, removes blockers, leads check-ins |
-| Member B | QA Lead | Prepares test checklist, verifies acceptance criteria, logs and retests defects |
-| Member C | DevOps Lead | Manages environment setup, deployment configuration, and integration workflow |
-| Member D | Docs Lead | Maintains backlog, sprint documentation, risk register, and project write-ups |
+| Member A | PM / Scrum Lead | Tracks sprint progress, coordinates backlog priorities, facilitates weekly check-ins |
+| Member B | QA Lead | Prepares test cases, verifies acceptance criteria, logs and retests defects |
+| Member C | DevOps Lead | Manages environment setup, deployment, CI-related tasks, and release readiness |
+| Member D | Docs Lead | Maintains backlog, sprint documents, risk register, release notes, and support documentation |
 
-## Role Rotation Guidance
+## Rotation Guidance
 
-- Rotate roles at the end of each sprint where possible.
-- Keep one person responsible for final documentation review each sprint.
-- Ensure QA and DevOps responsibilities are not skipped even in smaller weekly deliverables.
+- Rotate roles at the end of each sprint when practical.
+- Keep one person accountable for final documentation review in every sprint.
+- Ensure QA and DevOps tasks are still explicitly owned even when the team size is small.
 
 ## Working Agreements
 
-- Major scope changes must be reflected in the backlog and sprint plan.
-- All merged changes should have basic testing evidence.
-- Team members should update documentation when their work changes feature scope, risks, or setup instructions.
+- All significant changes should be reflected in backlog or sprint documentation where relevant.
+- Pull Requests are the default workflow for shared code.
+- Testing evidence should be collected before important branches are merged.
+- Scope changes must be recorded before they are treated as committed work.

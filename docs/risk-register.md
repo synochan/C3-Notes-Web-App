@@ -1,20 +1,20 @@
-# Risk Register
+# C3 Notes Risk Register
 
 | Risk | Likelihood (1-5) | Impact (1-5) | Score | Mitigation | Owner |
 |---|---:|---:|---:|---|---|
-| Project scope grows beyond what is realistic for 15 weeks | 4 | 5 | 20 | Keep MVP limited to core note management; move non-essential features to future enhancements | PM / Scrum Lead |
-| Frontend and backend integration takes longer than planned | 4 | 4 | 16 | Define API contract early, test endpoints before UI integration, integrate incrementally | Full-Stack Developer |
-| Deployment issues occur on Vercel or Render near deadline | 3 | 5 | 15 | Prepare deployment early, document environment variables, run staging checks before final week | DevOps Lead |
-| Team members have uneven availability during the semester | 3 | 4 | 12 | Use small sprint tasks, share progress weekly, rotate support responsibilities when needed | PM / Scrum Lead |
-| Bugs in CRUD operations affect core application reliability | 3 | 5 | 15 | Prioritize manual QA for create, edit, delete, and persistence flows in every sprint | QA Lead |
-| Database configuration problems slow development or deployment | 3 | 4 | 12 | Use local fallback during development, document PostgreSQL setup clearly, test migrations early | DevOps Lead |
-| UI quality falls below portfolio expectations | 2 | 4 | 8 | Review design consistency regularly, collect feedback, refine layout and interactions before final submission | UI/UX Developer |
-| Change requests add features that disrupt planned sprint work | 4 | 3 | 12 | Evaluate changes before accepting them, re-prioritize backlog, update sprint scope transparently | PM / Scrum Lead |
-| Documentation becomes outdated as implementation changes | 3 | 3 | 9 | Assign documentation ownership, review docs at each sprint close, update setup and planning files together with code changes | Docs Lead |
-| Search feature adds more complexity than expected | 2 | 3 | 6 | Treat search as stretch work until MVP stability is complete, keep implementation simple | Frontend Developer |
+| Project scope grows beyond a realistic 15-week academic timeline | 4 | 5 | 20 | Keep the MVP centered on accounts, notes, archive, and responsive UX; move non-essential ideas to later milestones | Member A |
+| Frontend and backend integration takes longer than expected | 4 | 4 | 16 | Agree on API shape early, test endpoints independently, and integrate features incrementally | Member C |
+| Deployment issues appear late in the semester | 3 | 5 | 15 | Prepare Render and Vercel configuration early, document environment variables, and validate before the final weeks | Member C |
+| Authentication or account bugs block access to user notes | 3 | 5 | 15 | Prioritize auth testing, protect private endpoints, and include regression checks after account changes | Member B |
+| Mobile responsiveness is weaker than desktop quality near submission time | 3 | 4 | 12 | Reserve dedicated UI review time for small screens and include mobile acceptance criteria in testing | Member D |
+| Database migration or environment configuration problems delay progress | 3 | 4 | 12 | Use migration discipline, document setup clearly, and validate schema changes on development and deployment environments | Member C |
+| Team availability becomes uneven during busy academic weeks | 3 | 4 | 12 | Use smaller sprint tasks, rotate ownership, and make blockers visible early during check-ins | Member A |
+| Documentation falls out of sync with the implementation | 3 | 3 | 9 | Assign documentation ownership and update delivery docs at sprint close | Member D |
+| A change request introduces extra UI complexity or rework | 3 | 3 | 9 | Re-evaluate priority before accepting the change and update backlog and sprint scope transparently | Member A |
+| User-uploaded media storage is unreliable in production | 2 | 4 | 8 | Use local upload support initially, then plan external object storage if the feature becomes critical | Member C |
 
 ## Notes
 
 - Score is calculated as `Likelihood x Impact`.
-- High-score risks should be reviewed at the start and end of each sprint.
-- The Week 3 change request increased risk around scope growth and sprint disruption, so those items should remain actively monitored.
+- Any risk scoring 15 or above should be reviewed at the start and end of each sprint.
+- The simulated change request for theme selection slightly increases UI consistency and testing risk, so design and regression testing should be tracked carefully.

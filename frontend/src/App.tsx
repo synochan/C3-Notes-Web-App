@@ -46,6 +46,7 @@ function App() {
   const [showArchived, setShowArchived] = useState(false);
   const [activeSection, setActiveSection] = useState<"notes" | "archived" | "settings">("notes");
   const [themeId, setThemeId] = useState<string>(() => localStorage.getItem(THEME_STORAGE_KEY) ?? defaultThemeId);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const currentTheme = useMemo(() => getThemeById(themeId), [themeId]);
   const themeStyle = useMemo(
@@ -59,6 +60,7 @@ function App() {
       setNotes([]);
       setActiveNote(null);
       setIsEditorOpen(false);
+      setIsSidebarOpen(false);
       setActiveSection("notes");
       setIsLoading(false);
       return;
@@ -439,7 +441,7 @@ function App() {
 
   return (
     <main
-      className="theme-shell min-h-screen px-3 py-4 sm:px-4 lg:px-5 lg:py-5"
+      className="theme-shell min-h-screen px-2 py-3 sm:px-4 lg:px-5 lg:py-5"
       style={themeStyle}
     >
       <div className="w-full">
@@ -455,9 +457,54 @@ function App() {
           </div>
         ) : null}
 
-        <div className="grid gap-4 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1fr)]">
-          <aside className="theme-panel rounded-[1.9rem] p-5 backdrop-blur-xl lg:sticky lg:top-5 lg:min-h-[calc(100vh-2.5rem)]">
-            <div className="theme-hero rounded-[1.6rem] p-5">
+        <div className="mb-3 flex items-center justify-between gap-3 rounded-[1.4rem] border border-[var(--theme-border)] bg-[var(--theme-panel)] px-4 py-3 shadow-[var(--theme-shadow)] backdrop-blur-xl lg:hidden">
+          <div className="min-w-0">
+            <p className="theme-soft text-[11px] font-semibold uppercase tracking-[0.3em]">C3 Notes</p>
+            <p className="mt-1 truncate text-base font-semibold text-[var(--theme-text)] sm:text-lg">
+              {activeSection === "settings"
+                ? "Account settings"
+                : activeSection === "archived"
+                  ? "Archived notes"
+                  : "Your notes"}
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            {activeSection !== "settings" ? (
+              <button
+                type="button"
+                className="theme-button-primary inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition"
+                onClick={openNewNoteEditor}
+              >
+                + New Note
+              </button>
+            ) : null}
+            <button
+              type="button"
+              className="theme-button-secondary inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition"
+              onClick={() => setIsSidebarOpen(true)}
+            >
+              Menu
+            </button>
+          </div>
+        </div>
+
+        <div className="grid gap-3 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1fr)]">
+          <aside
+            className={`theme-panel fixed inset-y-0 left-0 z-40 w-[min(22rem,88vw)] rounded-r-[1.7rem] p-4 backdrop-blur-xl transition-transform duration-300 lg:sticky lg:top-5 lg:z-auto lg:w-auto lg:translate-x-0 lg:rounded-[1.7rem] lg:p-5 lg:min-h-[calc(100vh-2.5rem)] ${
+              isSidebarOpen ? "translate-x-0" : "-translate-x-[105%]"
+            }`}
+          >
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <p className="theme-soft text-xs font-semibold uppercase tracking-[0.3em]">Workspace</p>
+              <button
+                type="button"
+                className="theme-button-secondary rounded-full px-3 py-2 text-sm font-medium transition lg:hidden"
+                onClick={() => setIsSidebarOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+            <div className="theme-hero rounded-[1.5rem] p-4 sm:p-5">
               <p className="theme-soft text-xs font-semibold uppercase tracking-[0.34em]">
                 C3 Notes
               </p>
@@ -481,8 +528,8 @@ function App() {
               <p className="mt-4 text-sm leading-6 text-[var(--theme-text-muted)]">Member since {joinDate}</p>
             </div>
 
-            <div className="mt-5 space-y-2">
-              <p className="theme-soft px-2 text-xs font-semibold uppercase tracking-[0.28em]">
+            <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+              <p className="theme-soft px-2 text-xs font-semibold uppercase tracking-[0.28em] sm:col-span-2 lg:col-span-1">
                 Workspace
               </p>
               <button
@@ -492,7 +539,10 @@ function App() {
                     ? "theme-button-primary"
                     : "theme-button-secondary"
                 }`}
-                onClick={() => setActiveSection("notes")}
+                onClick={() => {
+                  setActiveSection("notes");
+                  setIsSidebarOpen(false);
+                }}
               >
                 <span>Active notes</span>
                 <span className="rounded-full bg-[var(--theme-card)] px-2 py-1 text-xs text-[var(--theme-text-muted)]">
@@ -506,7 +556,10 @@ function App() {
                     ? "theme-button-primary"
                     : "theme-button-secondary"
                 }`}
-                onClick={() => setActiveSection("archived")}
+                onClick={() => {
+                  setActiveSection("archived");
+                  setIsSidebarOpen(false);
+                }}
               >
                 <span>Archived notes</span>
                 <span className="rounded-full bg-[var(--theme-card)] px-2 py-1 text-xs text-[var(--theme-text-muted)]">
@@ -515,8 +568,8 @@ function App() {
               </button>
             </div>
 
-            <div className="mt-5 space-y-2">
-              <p className="theme-soft px-2 text-xs font-semibold uppercase tracking-[0.28em]">
+            <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+              <p className="theme-soft px-2 text-xs font-semibold uppercase tracking-[0.28em] sm:col-span-2 lg:col-span-1">
                 Account
               </p>
               <button
@@ -526,7 +579,10 @@ function App() {
                     ? "theme-button-primary"
                     : "theme-button-secondary"
                 }`}
-                onClick={() => setActiveSection("settings")}
+                onClick={() => {
+                  setActiveSection("settings");
+                  setIsSidebarOpen(false);
+                }}
               >
                 <span>Settings</span>
                 <span className="rounded-full bg-[var(--theme-card)] px-2 py-1 text-xs text-[var(--theme-text-muted)]">
@@ -549,8 +605,17 @@ function App() {
             </div>
           </aside>
 
+          {isSidebarOpen ? (
+            <button
+              type="button"
+              aria-label="Close sidebar overlay"
+              className="fixed inset-0 z-30 bg-[color:color-mix(in_srgb,var(--theme-text)_16%,transparent)] backdrop-blur-[2px] lg:hidden"
+              onClick={() => setIsSidebarOpen(false)}
+            />
+          ) : null}
+
           <section className="space-y-4">
-            <div className="theme-panel rounded-[1.9rem] px-6 py-6 backdrop-blur-xl">
+            <div className="theme-panel rounded-[1.7rem] px-4 py-5 backdrop-blur-xl sm:px-6 sm:py-6">
               <p className="theme-soft text-xs font-semibold uppercase tracking-[0.34em]">
                 {activeSection === "settings"
                   ? "Account settings"
@@ -560,14 +625,14 @@ function App() {
               </p>
               <div className="mt-4 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                  <h1 className="font-sans text-4xl font-semibold tracking-[-0.04em] text-[var(--theme-text)] sm:text-5xl">
+                  <h1 className="font-sans text-3xl font-semibold tracking-[-0.04em] text-[var(--theme-text)] sm:text-4xl lg:text-5xl">
                     {activeSection === "settings"
                       ? "Your account"
                       : activeSection === "archived"
                         ? "Archived notes"
                         : "Your private notes"}
                   </h1>
-                  <p className="mt-3 max-w-2xl text-base leading-7 text-[var(--theme-text-muted)]">
+                  <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--theme-text-muted)] sm:text-base sm:leading-7">
                     {activeSection === "settings"
                       ? "Update your profile, change your password, and manage account preferences."
                       : activeSection === "archived"
@@ -578,7 +643,7 @@ function App() {
                 {activeSection !== "settings" ? (
                   <button
                     type="button"
-                    className="theme-button-primary inline-flex items-center rounded-full px-5 py-3 text-sm font-semibold transition"
+                    className="theme-button-primary hidden items-center rounded-full px-5 py-3 text-sm font-semibold transition lg:inline-flex"
                     onClick={openNewNoteEditor}
                   >
                     + New Note
@@ -619,8 +684,8 @@ function App() {
       </div>
 
       {isEditorOpen ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[color:color-mix(in_srgb,var(--theme-text)_18%,transparent)] px-4 py-6 backdrop-blur-sm">
-          <div className="max-h-[92vh] w-full max-w-4xl overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-[color:color-mix(in_srgb,var(--theme-text)_18%,transparent)] px-2 py-2 backdrop-blur-sm sm:items-center sm:px-4 sm:py-6">
+          <div className="max-h-[96vh] w-full max-w-4xl overflow-y-auto sm:max-h-[92vh]">
             <NoteEditor
               activeNote={activeNote}
               isSaving={isSavingNote}

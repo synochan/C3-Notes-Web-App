@@ -87,13 +87,13 @@ export function NoteEditor({
   const isEditing = Boolean(activeNote);
 
   return (
-    <section className="theme-panel rounded-[1.8rem] p-6 backdrop-blur-xl">
-      <div className="mb-5 flex items-start justify-between gap-4">
+    <section className="theme-panel rounded-[1.6rem] p-4 backdrop-blur-xl sm:rounded-[1.8rem] sm:p-6">
+      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div>
           <p className="theme-soft text-xs font-semibold uppercase tracking-[0.3em]">
             {isEditing ? "Edit note" : "New note"}
           </p>
-          <h2 className="mt-3 font-sans text-3xl font-semibold tracking-[-0.03em] text-[var(--theme-text)]">
+          <h2 className="mt-3 font-sans text-2xl font-semibold tracking-[-0.03em] text-[var(--theme-text)] sm:text-3xl">
             {isEditing ? "Refine your note" : "Create a new note"}
           </h2>
         </div>
@@ -291,17 +291,17 @@ export function NoteEditor({
           </label>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <button
             type="submit"
-            className="theme-button-primary inline-flex items-center rounded-full px-5 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-70"
+            className="theme-button-primary inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-70"
             disabled={isSaving}
           >
             {isSaving ? "Saving..." : isEditing ? "Update note" : "Create note"}
           </button>
           <button
             type="button"
-            className="theme-button-secondary inline-flex items-center rounded-full px-5 py-3 text-sm font-semibold transition"
+            className="theme-button-secondary inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition"
           >
             Share
           </button>
