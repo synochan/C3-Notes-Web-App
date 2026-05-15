@@ -103,7 +103,7 @@ Write-Host $response.Content
 - HTTPS encryption active
 
 **Verification Date**: May 11, 2026  
-**Verified By**: [Your Name]
+**Verified By**: [Christian Dagcuta]
 ```
 
 ---
