@@ -234,7 +234,7 @@ docs/
 2. Fill in cost-benefit analysis
 3. Update metrics report
 4. Document any decisions
-5. Prepare demo script
+5. Demo script prepared: [docs/demo-script.md](./demo-script.md)
 
 ---
 
